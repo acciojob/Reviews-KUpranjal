@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import { useState } from 'react';
 
 const Review = () => {
   const data = [
@@ -36,48 +36,50 @@ const Review = () => {
       image:
         'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883423/person-4_t9nxjt.jpg',
       text:
-        'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
+        'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic.',
     },
   ];
 
   const [curr, setCurr] = useState(0);
 
+  const prevPerson = () => {
+    setCurr(curr === 0 ? data.length - 1 : curr - 1);
+  };
+
+  const nextPerson = () => {
+    setCurr(curr === data.length - 1 ? 0 : curr + 1);
+  };
+
+  const surpriseMe = () => {
+    let randomNumber = Math.floor(Math.random() * data.length);
+    while (randomNumber === curr) {
+      randomNumber = Math.floor(Math.random() * data.length);
+    }
+    setCurr(randomNumber);
+  };
+
   return (
-    <div>
-      <div className='review'>
-        <p id={`author-${data[curr].id}`} className='author'>{data[curr].name}</p>
-        <p className='job'>{data[curr].job}</p>
-        <p className='info'>{data[curr].text}</p>
-        <img className='person-img' src={data[curr].image} alt={data[curr].name} />
+    <div className='review'>
+      <p id={`author-${data[curr].id}`} className='author'>
+        {data[curr].name}
+      </p>
+      <p className='job'>{data[curr].job}</p>
+      <p className='info'>{data[curr].text}</p>
+      <img className='person-img' src={data[curr].image} alt={data[curr].name} />
 
-        <button className='prev-btn' onClick={() => {
-          if(curr === 0) {
-            setCurr(3);
-          } else {
-            setCurr(curr - 1);
-          }
-        }}>Previous</button>
+      <button className='prev-btn' onClick={prevPerson}>
+        Previous
+      </button>
 
-        <button className='next-btn' onClick={() => {
-          if(curr === 3) {
-            setCurr(0);
-          } else {
-            setCurr(curr + 1);
-          }
-        }}>Next</button>
+      <button className='next-btn' onClick={nextPerson}>
+        Next
+      </button>
 
-        <button onClick={() => {
-          while(true) {
-            let randomNumber = Math.floor(Math.random() * 4);
-            if(randomNumber !== curr) {
-              setCurr(randomNumber);
-              break;
-            }
-          }
-        }} className='random-btn'>surprise me</button>
-      </div>
+      <button className='random-btn' onClick={surpriseMe}>
+        Surprise me
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Review
+export default Review;
