@@ -1,6 +1,5 @@
 import React from 'react';
-import Review from './Review'; // Adjust the path as needed based on your file structure
-
+import Review from './Review'; 
 const App = () => {
   return (
     <div>

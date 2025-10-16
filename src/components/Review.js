@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import {  useState } from 'react'
 
 const Review = () => {
   const data = [
